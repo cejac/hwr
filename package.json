@@ -12,6 +12,12 @@
   },
   "author": "Carolina Ceja",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/cejac/hwr/issues"
   },
