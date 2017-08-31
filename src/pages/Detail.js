@@ -3,7 +3,10 @@ import Chance from 'chance';
 
 class Detail extends React.Component{
   render() {
-    return <p>Hello, {chance.first()}!</p>;
+    return (<div>
+      <p>Hello, {chance.first()}!</p>
+      <p>You're from {chance.county({full: true})}.</p>
+    </div>);
   }
 }
 
