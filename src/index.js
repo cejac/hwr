@@ -1,9 +1,9 @@
 import React from 'React';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 
-import Detail from './pages/detail';
+import Detail from './pages/Detail';
 
-ReactDom.render(
-  <Detail />,
+ReactDOM.render(
+  <Detail message='This is coming from props!' />,
   document.getElementById('app')
 );
