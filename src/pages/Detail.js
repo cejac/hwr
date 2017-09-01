@@ -2,16 +2,35 @@ import React from 'react';
 import Chance from 'chance';
 
 class Detail extends React.Component{
+  constructor(props) {
+    super(props);
+
+    const people = []
+
+    for(let i = 0; i < 10; i++) {
+      people.push({
+        name: chance.first(),
+        country: chance.country({full: true})
+      })
+    }
+
+    this.state = {people}
+  }
+
   buttonClicked(){
-    this.forceUpdate();
+    const newState = {
+      name: chance.first()
+    };
+
+    this.setState(newState);
   }
 
   render() {
-    return (<div>
-      <p>Hello, {chance.first()}!</p>
-      <p>You're from {chance.county({full: true})}.</p>
-      <button onClick={this.buttonClicked.bind(this)}>Meet someone new</button>
-    </div>);
+      return (<div>
+      {this.state.people.map((person, index) => (
+          <p key={index}>Hello, {person.name} from {person.country}!</p>
+      ))}
+      </div>);
   }
 }
 
