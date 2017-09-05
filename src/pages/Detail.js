@@ -12,6 +12,7 @@ class Detail extends React.Component{
       ajax.get('https://api.github.com/repos/facebook/react/commits')
           .end((error, response) => {
               if (!error && response) {
+                console.dir(response.body);
                   this.setState({ commits: response.body });
               } else {
                   console.log('There was an error fetching from GitHub', error);
@@ -24,7 +25,10 @@ class Detail extends React.Component{
   render() {
       return (<div>
       {this.state.commits.map((commit, index) => (
-          <p key={index}>Some commit data here.</p>
+          <p key={index}>
+            <strong>{commit.author ? commit.author.login : 'Anonymous'}</strong>
+            <a href={commit.html_url}>{commit.commit.message}</a>.
+          </p>
       ))}
       </div>);
   }
