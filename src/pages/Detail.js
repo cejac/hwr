@@ -1,4 +1,5 @@
 import React from 'react';
+import ajax from 'superagent';
 
 class Detail extends React.Component{
   constructor(props) {
@@ -7,6 +8,17 @@ class Detail extends React.Component{
     this.state = {commits: []};
   }
 
+  componentWillMount() {
+      ajax.get('https://api.github.com/repos/facebook/react/commits')
+          .end((error, response) => {
+              if (!error && response) {
+                  this.setState({ commits: response.body });
+              } else {
+                  console.log('There was an error fetching from GitHub', error);
+              }
+          }
+      );
+  }
 
 
   render() {
