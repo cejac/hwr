@@ -77,17 +77,22 @@ class Detail extends React.Component{
 
 
   render() {
-      return (<div>
-      {this.state.commits.map((commit, index) => {
-          const author = commit.author ? commit.author.login : 'Anonymous';
+      let content;
 
-          return (<p key={index}>
-              <strong>{author}</strong>:
-              <a href={commit.html_url}>{commit.commit.message}</a>.
-          </p>);
-      })}
-      </div>);
-  }
+      if(this.state.mode === 'commits'){
+        content = this.renderCommits();
+      } else if(this.state.mode === 'forks') {
+        content = this.renderForks();
+      } else {
+        content = this.renderPulls()
+      }
+
+      return(<div>
+        <button onClick={this.showCommits.bind(this)}>Show Commits</button>
+        <button onClick={this.showForks.bind(this)}>Show Forks</button>
+        <button onClick={this.showPulls.bind(this)}>Show Pulls</button>
+        {content}
+      </div>)
 }
 
 export default Detail;
