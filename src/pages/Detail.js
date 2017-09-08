@@ -27,7 +27,7 @@ class Detail extends React.Component{
       ajax.get('https://api.github.com/repos/facebook/react/forks')
           .end((error, response) => {
               if (!error && response) {
-                  this.setState({ commits: response.body });
+                  this.setState({ forks: response.body });
               } else {
                   console.log('There was an error fetching from GitHub', error);
               }
@@ -37,7 +37,7 @@ class Detail extends React.Component{
       ajax.get('https://api.github.com/repos/facebook/react/pulls')
           .end((error, response) => {
               if (!error && response) {
-                  this.setState({ commits: response.body });
+                  this.setState({ pulls: response.body });
               } else {
                   console.log('There was an error fetching from GitHub', error);
               }
@@ -45,15 +45,29 @@ class Detail extends React.Component{
       );
   }
 
-  renderCommits() {
-    return this.state.commits.map((commit, index) => {
-      const author = commit.author? commit.author.login : 'Anonymous';
+  showCommits() {
+    this.setState({mode:'commits'});
+  }
 
-      return(<p key={index}>
-        <strong>{author}</strong>:
-        <a href={commit.html_url}>{commit.commit.message}</a>).
-      </p>
-    })}
+  showForks() {
+    this.setState({mode:'forks'});
+  }
+
+  showPulls() {
+    this.setState({mode:'pulls'});
+  }
+
+  renderCommits() {
+      return this.state.commits.map((commit, index) => {
+          console.log('commit', commit)
+          const author = commit.author ? commit.author.login : 'Anonymous';
+
+          return (<p key={index}>
+              <strong>{author}</strong>:
+              <a href={commit.html_url}>{commit.commit.message}</a>.
+          </p>);
+      });
+  }
 
     renderForks() {
       return this.state.forks.map((fork, index) => {
@@ -61,9 +75,10 @@ class Detail extends React.Component{
 
         return(<p key={index}>
           <strong>{owner}</strong>: forked to
-          <a href={fork.html_url}>{fork.html_url}</a>) at {fork.create_at}.
-        </p>
-      })}
+          <a href={fork.html_url}>{fork.html_url}</a> at {fork.create_at}.
+        </p>)
+      });
+    }
 
       renderPulls() {
         return this.state.pulls.map((pull, index) => {
@@ -71,9 +86,10 @@ class Detail extends React.Component{
 
           return(<p key={index}>
             <strong>{user}</strong>:
-            <a href={pull.html_url}>{pull.body}</a>).
-          </p>
-        })}
+            <a href={pull.html_url}>{pull.body}</a>.
+          </p>)
+        });
+      }
 
 
   render() {
@@ -93,6 +109,7 @@ class Detail extends React.Component{
         <button onClick={this.showPulls.bind(this)}>Show Pulls</button>
         {content}
       </div>)
+    };
 }
 
 export default Detail;
