@@ -36,7 +36,6 @@ class Detail extends React.Component{
 
   renderCommits() {
       return this.state.commits.map((commit, index) => {
-          console.log('commit', commit)
           const author = commit.author ? commit.author.login : 'Anonymous';
 
           return (<p key={index}>
