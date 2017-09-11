@@ -9,7 +9,7 @@ const Root = () => (
   <HashRouter>
     <Switch>
       <Route exact path='/' component={List} />
-      <Route exact path='/react' component={Detail} />
+      <Route exact path='/detail/:repo' component={Detail} />
     </Switch>
   </HashRouter>
 )
