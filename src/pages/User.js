@@ -11,7 +11,7 @@ class User extends React.Component {
   }
 
   componentWillMount() {
-    ajax.get('https://api.github.com/users/${this.props.params.user}/events');
+    ajax.get(`https://api.github.com/user/${this.props.params.user}/events`)
       .end((error, response) => {
         if(!error && response) {
           this.setState({events: response.body});
@@ -22,10 +22,20 @@ class User extends React.Component {
   }
 
   render() {
-    return(<div>
-      <p>Content for {this.props.params.user} to go here.</p>
-    </div>)
+    return(<ul>
+      {this.state.events.map((event, index) => {
+        const eventType = event.type;
+        const repoName = event.repo.name;
+        const creationDate = event.created_at;
+
+        return(<li key={index}>
+          <strong>{repoName}</strong>: {eventType}
+          at {creationDate}.
+        </li>);
+      })}
+    </ul>)
   }
+
 
 }
 
