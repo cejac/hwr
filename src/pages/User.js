@@ -11,7 +11,7 @@ class User extends React.Component {
   }
 
   componentWillMount() {
-    ajax.get(`https://api.github.com/user/${this.props.params.user}/events`)
+    ajax.get(`https://api.github.com/users/${this.props.match.params.user}/events`)
       .end((error, response) => {
         if(!error && response) {
           this.setState({events: response.body});
