@@ -25,8 +25,8 @@ class User extends React.Component {
 
   render() {
     return(<div>
-      <p>You are here: <NavLink to='/' activeClassName='active'>Home</NavLink>
-      > {this.props.match.params.user}</p>
+      <p>You are here: <NavLink to='/' activeClassName='active'>Home </NavLink>
+       > {this.props.match.params.user}</p>
       <ul>
       {this.state.events.map((event, index) => {
         const eventType = event.type;

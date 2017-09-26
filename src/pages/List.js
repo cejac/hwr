@@ -5,6 +5,7 @@ class List extends React.Component {
   render() {
       return (
           <div>
+            <p>You are here: <NavLink to="/" activeClassName="active">Home</NavLink></p>
               <p>Please choose a repository from the list below.</p>
               <ul>
                   <li><Link to="/detail/react">React</Link></li>
