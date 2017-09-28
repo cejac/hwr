@@ -1,5 +1,7 @@
 import React from 'react';
 import ajax from 'superagent';
+import {NavLink, Link} from 'react-router-dom';
+
 
 class User extends React.Component {
   constructor(props) {
@@ -22,7 +24,10 @@ class User extends React.Component {
   }
 
   render() {
-    return(<ul>
+    return(<div>
+      <p>You are here: <NavLink to='/' activeClassName='active'>Home </NavLink>
+       > {this.props.match.params.user}</p>
+      <ul>
       {this.state.events.map((event, index) => {
         const eventType = event.type;
         const repoName = event.repo.name;
@@ -33,7 +38,8 @@ class User extends React.Component {
           at {creationDate}.
         </li>);
       })}
-    </ul>)
+    </ul>
+  </div>)
   }
 
 
