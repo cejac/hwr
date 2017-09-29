@@ -4,7 +4,7 @@
   "description": "React",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
