@@ -22,6 +22,15 @@
     "url": "https://github.com/cejac/hwr/issues"
   },
   "homepage": "https://github.com/cejac/hwr#readme",
+  "jest": {
+      "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+      "unmockedModulePathPatterns": [
+          "<rootDir>/node_modules/react",
+          "<rootDir>/node_modules/react-dom",
+          "<rootDir>/node_modules/react-addons-test-utils",
+          "<rootDir>/node_modules/fbjs"
+      ]
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-jest": "^21.2.0",
